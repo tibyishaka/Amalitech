@@ -1,4 +1,59 @@
-# Project Brief: The "Last Mile" Logistics Auditor
+# The "Last Mile" Logistics Auditor — Submission
+
+## A. Executive Summary
+
+Analysis of 96,470 delivered orders from the Olist Brazilian E-Commerce dataset confirms the CEO's suspicion: Veridi Logistics is systematically over-promising delivery dates. While 93.2% of orders arrive on time, the 6.8% that are late cause disproportionate reputational damage — customers who receive late orders give an average review score of 2.99/5, compared to 4.29/5 for on-time deliveries. Super late orders (more than 5 days past the estimated date) score as low as 1.74/5. The problem is not nationwide — the state of Alagoas (AL) has the highest late delivery rate at 21.4%, pointing to a regional logistics failure rather than a systemic one. Fixing the accuracy of delivery estimates, particularly in the northeast states, would directly improve customer sentiment and protect Veridi's brand.
+
+## B. Project Links
+
+- **Notebook:** [logistics_auditor.ipynb](./logistics_auditor.ipynb)
+- **Dashboard:** [View Dashboard](https://app.powerbi.com/view?r=eyJrIjoiYmVjNDg5ZjgtMDMwYS00ODg0LWJkNzQtZGE3MDcyMjNiMzRmIiwidCI6IjNiMWFkOTBiLTIyOTktNDYzYy04ZjczLTJjODAxNDdkZjc5ZiIsImMiOjh9)
+- **Presentation:** [View Slides](https://canva.link/bexix5paq0nqtis)
+- **Video WalkThrough:** [View The video](...)
+
+## C. Technical Explanation
+
+**Data Cleaning:**
+Joined four CSV files (orders, reviews, customers, products) into a single master dataset using `order_id` and `customer_id` as keys. Deduplicated the reviews table by keeping only the most recent review per order to prevent 1-to-many row inflation verified with an assertion that the master dataset row count exactly matches the orders table. Excluded canceled and unavailable orders, and any rows missing delivered or estimated delivery dates, before calculating delay metrics.
+
+**Notebook HTML Export:**
+The notebook was exported to HTML using `nbconvert` so charts remain visible even if GitHub fails to render the `.ipynb` file. Run the following command from the project folder to reproduce the export:
+
+```bash
+python -m nbconvert --to html "logistics_auditor.ipynb"
+```
+
+**Candidate's Choice — Delivery Performance by Order Price Tier:**
+Orders were classified into four price quartiles (Budget → High-Value) to test whether premium orders suffer worse delivery performance. This matters to the business because high-value order failures carry greater financial risk through chargebacks, returns, and VIP customer churn. If late deliveries are concentrated in a specific price tier, operations can prioritise expedited handling or tighter SLA promises for those segments.
+
+---
+
+## Project Structure
+
+```text
+Amalitech/
+│
+├── logistics_auditor.ipynb              # Main analysis notebook (all 4 stories + bonus)
+├── logistics_auditor.html               # HTML export of the notebook (add after export)
+│
+├── veridi_master_dataset.csv            # Cleaned master dataset for dashboard
+├── veridi_state_summary.csv             # State-level summary (% late per state)
+│
+├── images/
+│   ├── s2_delivery_status.png           # Story 2 — On Time / Late / Super Late breakdown
+│   ├── s3_geographic_late.png           # Story 3 — % late by Brazilian state
+│   ├── s4_sentiment_correlation.png     # Story 4 — Delay vs review score
+│   ├── bonus_category_late.png          # Bonus — Late rate by product category (English)
+│   └── candidates_choice_price_tier.png # Candidate's Choice — Performance by price tier
+│
+└── README.md                            # This file
+```
+
+> **Note:** The raw Olist dataset is downloaded automatically via `kagglehub` when you run the notebook. It is excluded from the repository.
+
+---
+
+## Project Brief: The "Last Mile" Logistics Auditor
 
 **Client:** Veridi Logistics (Global E-Commerce Aggregator)
 **Deliverable:** Public Dashboard, Code Notebook & Insight Presentation
@@ -110,20 +165,11 @@ You have the flexibility to choose your development environment:
 
 Please edit this `README.md` file in your forked repository to include the following three sections at the top:
 
-### A. The Executive Summary
+**Required sections (already completed above):**
 
-- A 3-5 sentence summary of your findings.
-
-### B. Project Links
-
-- **Link to Notebook:** (e.g., Google Colab, etc.). _Ensure sharing permissions are set to "Anyone with the link can view"._
-- **Link to Dashboard:** (e.g., Tableau Public, etc.).
-- **Link to Presentation:** A link to a short slide deck (PDF/PPT) AND (Optional) a 2-minute video walkthrough (YouTube) explaining your results.
-
-### C. Technical Explanation
-
-- Briefly explain how you handled the "Data Cleaning".
-- Explain your "Candidate's Choice" addition.
+- Executive Summary
+- Project Links
+- Technical Explanation
 
 **Important Note on Code Submission:**
 
