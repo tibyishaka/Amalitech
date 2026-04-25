@@ -9,7 +9,7 @@ Analysis of 96,470 delivered orders from the Olist Brazilian E-Commerce dataset 
 - **Notebook:** [logistics_auditor.ipynb](./logistics_auditor.ipynb)
 - **Dashboard:** [View Dashboard](https://app.powerbi.com/view?r=eyJrIjoiYmVjNDg5ZjgtMDMwYS00ODg0LWJkNzQtZGE3MDcyMjNiMzRmIiwidCI6IjNiMWFkOTBiLTIyOTktNDYzYy04ZjczLTJjODAxNDdkZjc5ZiIsImMiOjh9)
 - **Presentation:** [View Slides](https://canva.link/bexix5paq0nqtis)
-- **Video WalkThrough:** [View The video](...)
+- **Video WalkThrough:** [View The video](https://youtu.be/bLgrvMPdCeQ)
 
 ## C. Technical Explanation
 
